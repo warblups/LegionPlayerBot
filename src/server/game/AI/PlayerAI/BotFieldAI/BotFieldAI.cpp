@@ -13,7 +13,9 @@
 #include "PartyPackets.h"
 #include "MiscPackets.h"
 #include "CharmInfo.h"
-#include <corecrt_math_defines.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 BotFieldAI* BotFieldAI::debugFieldAI = NULL;
 
@@ -93,7 +95,12 @@ m_HasReset(false)
 
 BotFieldAI::~BotFieldAI()
 {
-
+	delete m_Movement;
+	if (pHorrorState)
+	{
+		delete pHorrorState;
+		pHorrorState = nullptr;
+	}
 }
 
 void BotFieldAI::UpdateAI(uint32 diff)

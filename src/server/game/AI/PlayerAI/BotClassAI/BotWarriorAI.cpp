@@ -4,7 +4,10 @@
 
 uint32 BotWarriorAI::GetRagePowerPer()
 {
-	float per = (float)me->GetPower(POWER_RAGE) / (float)me->GetMaxPower(POWER_RAGE);
+	uint32 maxPower = me->GetMaxPower(POWER_RAGE);
+	if (maxPower == 0)
+		return 0;
+	float per = (float)me->GetPower(POWER_RAGE) / (float)maxPower;
 	return (uint32)(per * 100);
 }
 

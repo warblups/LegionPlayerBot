@@ -65,7 +65,10 @@ void BotRogueAI::ResetBotAI()
 
 uint32 BotRogueAI::GetEnergyPowerPer()
 {
-	float per = (float)me->GetPower(POWER_ENERGY) / (float)me->GetMaxPower(POWER_ENERGY);
+	uint32 maxPower = me->GetMaxPower(POWER_ENERGY);
+	if (maxPower == 0)
+		return 0;
+	float per = (float)me->GetPower(POWER_ENERGY) / (float)maxPower;
 	return (uint32)(per * 100);
 }
 

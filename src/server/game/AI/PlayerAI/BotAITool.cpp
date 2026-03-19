@@ -11,7 +11,9 @@
 #include "SpellAuras.h"
 #include "WorldSession.h"
 #include "TradeData.h"
-#include <corecrt_math_defines.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 float BotUtility::BattlegroundScoreRate = 1.0f;
 float BotUtility::DungeonBotDamageModify = 1.0f;

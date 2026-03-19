@@ -79,7 +79,10 @@ void BotHunterAI::ResetBotAI()
 
 uint32 BotHunterAI::GetManaPowerPer()
 {
-	float per = (float)me->GetPower(POWER_MANA) / (float)me->GetMaxPower(POWER_MANA);
+	uint32 maxPower = me->GetMaxPower(POWER_MANA);
+	if (maxPower == 0)
+		return 0;
+	float per = (float)me->GetPower(POWER_MANA) / (float)maxPower;
 	return (uint32)(per * 100);
 }
 

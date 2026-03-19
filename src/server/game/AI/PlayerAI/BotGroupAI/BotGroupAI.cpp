@@ -13,7 +13,9 @@
 #include "TradeData.h"
 #include "ItemPackets.h"
 #include "CharmInfo.h"
-#include <corecrt_math_defines.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 BotGroupAI* BotGroupAI::debugGroupAI = NULL;
 bool BotGroupAI::PVE_MAX_DUNGEON = false;

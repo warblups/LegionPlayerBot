@@ -38,7 +38,12 @@ m_HasReset(false)
 
 BotArenaAI::~BotArenaAI()
 {
-
+	delete m_Movement;
+	if (pHorrorState)
+	{
+		delete pHorrorState;
+		pHorrorState = nullptr;
+	}
 }
 
 void BotArenaAI::UpdateAI(uint32 diff)

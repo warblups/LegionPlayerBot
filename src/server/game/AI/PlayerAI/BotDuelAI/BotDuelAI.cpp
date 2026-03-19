@@ -11,7 +11,9 @@
 #include "PlayerBotMgr.h"
 #include "BotDuelClassAI.h"
 #include "CharmInfo.h"
-#include <corecrt_math_defines.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 BotDuelAI* BotDuelAI::CreateBotDuelAIByPlayerClass(Player* player)
 {

@@ -850,38 +850,7 @@ void BotGroupAI::UpdateAI(uint32 diff)
 	if (me->isAlive())
 	{
 		
-if (bothp==0)
-{
-int32 isok = sConfigMgr->GetIntDefault("pbot_hp", 1);
-if (isok >1)
-{
-        
-           int pct = ((int) (me->GetMaxHealth()) + me->getLevel()*100);
-
-        pct=pct*(isok-1);
-        if ((int) me->GetMaxHealth() < pct && (int) me->GetMaxHealth() <100000)
-  {
-        bothp=1;
-        me->SetCreateHealth(pct);
-        me->SetMaxHealth(pct);
-        me->SetHealth(pct);
-  }
-
-
-
-  
-}	
-} 
-
-if (me->GetPower(POWER_RAGE) < me->GetMaxPower(POWER_RAGE)/5)
-me->SetPower(POWER_RAGE, (me->GetMaxPower(POWER_RAGE)));
-
-if (me->GetPower(POWER_ENERGY) < me->GetMaxPower(POWER_ENERGY)/5)
-me->SetPower(POWER_ENERGY, (me->GetMaxPower(POWER_ENERGY)));
-
-if (me->GetPower(POWER_MANA) < me->GetMaxPower(POWER_MANA)/5)
-me->SetPower(POWER_MANA, (me->GetMaxPower(POWER_MANA)));
-		
+		InitBotHP();
 		m_CheckStoped.UpdatePosition(diff);
 		ClearMechanicAura();
 		if (!IsNotMovement())
@@ -1020,6 +989,24 @@ me->SetPower(POWER_MANA, (me->GetMaxPower(POWER_MANA)));
 			me->SetSelection(ObjectGuid::Empty);
 			m_Revive.UpdateRevive(BOTAI_UPDATE_TICK);
 		}
+	}
+}
+
+void BotGroupAI::InitBotHP()
+{
+	if (bothp != 0)
+		return;
+	int32 isok = sConfigMgr->GetIntDefault("pbot_hp", 1);
+	if (isok <= 1)
+		return;
+	int32 pct = ((int32)me->GetMaxHealth()) + me->getLevel() * 100;
+	pct = pct * (isok - 1);
+	if ((int32)me->GetMaxHealth() < pct && (int32)me->GetMaxHealth() < 100000)
+	{
+		bothp = 1;
+		me->SetCreateHealth(pct);
+		me->SetMaxHealth(pct);
+		me->SetHealth(pct);
 	}
 }
 

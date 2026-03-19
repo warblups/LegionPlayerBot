@@ -1758,6 +1758,12 @@ void BotBGAI::UpdateBotAI(uint32 diff)
 			if (Unit* enemy = SearchEnemy(inArena ? 200 : BOTAI_SEARCH_RANGE))
 			{
 				me->SetSelection(enemy->GetGUID());
+				// Initiate aggressive movement toward enemy immediately
+				if (!inArena && !IsNotMovement())
+				{
+					float chaseRange = IsMeleeBotAI() ? 2.0f : float(BOTAI_RANGESPELL_DISTANCE);
+					m_Movement->MovementTo(enemy->GetGUID(), chaseRange);
+				}
 			}
 			else
 			{

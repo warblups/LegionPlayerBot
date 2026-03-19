@@ -35,6 +35,7 @@ public:
 	void DamageDealt(Unit* victim, uint32& damage, DamageEffectType damageType) override;
 	void DamageEndure(Unit* attacker, uint32& damage, DamageEffectType damageType);
 	void UpdateAI(uint32 diff) override;
+	void InitBotHP();
 	virtual void ResetBotAI();
 	void StartFullDispel();
 	void ClearFullDispel() { m_FullDispel = 0; }
